@@ -16,14 +16,6 @@ spring:
   application:
     name: orcid-service
 
-resilience4j:
-  retry:
-    instances:
-      getResearcher:
-        maxAttempts: 3
-        waitDuration: 2s
-
-
 app:
   gateways:
     orcid:

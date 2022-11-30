@@ -24,7 +24,6 @@ public class OrcidController {
         return service.isActive();
     }
 
-    @Retry(name = "getResearcher")
     @Throw(threshold = 0.5)
     @GetMapping("researcher/{orcid}")
     public Researcher getResearcher(@NotNull @PathVariable String orcid) {
