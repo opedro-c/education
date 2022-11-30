@@ -1,5 +1,7 @@
 # education
 
+[Link para os vídeos da resolução da parte 1 do trabalho da disciplia de Projetos de Alta Disponibilidade](https://drive.google.com/drive/folders/1RnbqmrvQi3fbbu0jQE_WRT833vorj0VZ?usp=share_link)
+
 ## Diagrams
 
 ### Components
