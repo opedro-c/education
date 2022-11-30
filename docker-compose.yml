@@ -48,8 +48,10 @@ services:
     links:
       - discovery-server
     ports:
-      # - "8182-8189:8181" - error (address already in use)
-      - "8181"
+      - "8182-8189:8181"
+    deploy:
+      replicas: 2
+      mode: replicated
     hostname: orcid-service
     networks:
       education:

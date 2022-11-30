@@ -4,10 +4,8 @@ import com.labcomu.edu.client.OrcidGateway;
 import com.labcomu.edu.client.OrgGateway;
 import com.labcomu.edu.resource.Organization;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Validated

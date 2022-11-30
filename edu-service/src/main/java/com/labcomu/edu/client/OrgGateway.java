@@ -1,7 +1,13 @@
 package com.labcomu.edu.client;
 
+import com.labcomu.edu.LogWriter;
+import lombok.extern.slf4j.Slf4j;
 import com.labcomu.edu.configuration.EduProperties;
 import com.labcomu.edu.resource.Organization;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -9,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.validation.constraints.NotNull;
 
+@Slf4j
 @Component
 @Validated
 public class OrgGateway {
@@ -22,6 +29,7 @@ public class OrgGateway {
         this.fetchOrganizationUrl = properties.getUrl().getFetchOrganizationDetails();
     }
 
+    @CircuitBreaker(name = "edu-service", fallbackMethod = "writelog")
     public Organization getOrganization(@NotNull final String url) {
         return webClientBuilder.build()
                 .get()
@@ -30,5 +38,10 @@ public class OrgGateway {
                 .retrieve()
                 .bodyToMono(Organization.class)
                 .block();
+    }
+
+    public Organization writelog(String url, CallNotPermittedException e){
+        LogWriter.writeLogCircuitBreaker(e);
+        return null;
     }
 }
